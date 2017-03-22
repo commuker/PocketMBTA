@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "389320742367",
+    "firebase_url": "https://pocket-mbta-1489877375186.firebaseio.com",
+    "project_id": "pocket-mbta-1489877375186",
+    "storage_bucket": "pocket-mbta-1489877375186.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389320742367:android:f9742449054bd66a",
+        "android_client_info": {
+          "package_name": "com.commuker.pocketmbta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389320742367-ho7p22qjh0n54uahd9brisqi7au38ai9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.commuker.pocketmbta",
+            "certificate_hash": "e777efc44b6692ade3fa76449f21a454ce342d7b"
+          }
+        },
+        {
+          "client_id": "389320742367-1ekd32m1m65n90esolatmoa9ph9ngnmq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjHzp0aCwdPBtW-tcPNE0PvAde1DKsvCI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389320742367-1ekd32m1m65n90esolatmoa9ph9ngnmq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

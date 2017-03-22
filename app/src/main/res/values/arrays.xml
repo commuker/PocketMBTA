@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="commute_method">
+        <item>Commuter Rail</item>
+        <item>Bus</item>
+        <item>Driving</item>
+        <item>Biking</item>
+    </string-array>
+
+    <string-array name="default_commute_method">
+        <item>Commuter Rail</item>
+        <item>Bus</item>
+    </string-array>
+</resources>
