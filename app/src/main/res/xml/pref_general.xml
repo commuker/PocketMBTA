@@ -4,7 +4,7 @@
         android:capitalize="words"
         android:inputType="textCapWords"
         android:defaultValue="@string/places_home"
-        android:key="places_home"
+        android:key="@string/pref_places_home"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Your home address" />
@@ -12,7 +12,7 @@
         android:capitalize="words"
         android:inputType="textCapWords"
         android:defaultValue="@string/places_work"
-        android:key="places_work"
+        android:key="@string/pref_places_work"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Your work place" />
@@ -20,7 +20,7 @@
         android:defaultValue="@array/default_commute_method"
         android:entries="@array/commute_method"
         android:entryValues="@array/commute_method"
-        android:key="commute_method"
+        android:key="@string/pref_commute_method"
         android:title="Commute methods" />
     <SwitchPreference
         android:defaultValue="true"

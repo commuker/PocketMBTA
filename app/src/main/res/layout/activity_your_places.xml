@@ -22,12 +22,26 @@
 
     <include layout="@layout/content_your_places" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_add_location_white_24dp" />
+        android:orientation="vertical"
+        android:layout_gravity="bottom|end">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_input_place_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_add_location_white_24dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_current_place_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_location_on_white_24dp" />
+
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

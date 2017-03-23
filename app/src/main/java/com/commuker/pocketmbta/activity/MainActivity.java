@@ -21,7 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
 
 import com.commuker.pocketmbta.R;
 import com.commuker.pocketmbta.adapter.RouteAdapter;
@@ -50,31 +50,18 @@ public class MainActivity extends AppCompatActivity implements
     private BottomNavigationView mBottomNav;
     private int mSelectedItem;
 
+    private List<Route> routeList = new ArrayList<>();
+    private RecyclerView mRecyclerView;
+    private RouteAdapter mAdapter;
+
+    private List<Route> routeList2 = new ArrayList<>();
+    private RecyclerView mRecyclerView2;
+    private RouteAdapter mAdapter2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_side_drawer);
-
-        mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
-        mBottomNav.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                selectFragment(item);
-                return true;
-            }
-
-        });
-
-        MenuItem selectedItem;
-        if (savedInstanceState != null) {
-            mSelectedItem = savedInstanceState.getInt(SELECTED_ITEM, 0);
-            selectedItem = mBottomNav.getMenu().findItem(mSelectedItem);
-        } else {
-            selectedItem = mBottomNav.getMenu().getItem(0);
-        }
-        selectFragment(selectedItem);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -94,6 +81,44 @@ public class MainActivity extends AppCompatActivity implements
                     .addApi(LocationServices.API)
                     .build();
         }
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.routes_recycler_view);
+
+        mAdapter = new RouteAdapter(routeList);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mAdapter);
+
+        prepareRouteData();
+
+        mRecyclerView2 = (RecyclerView) findViewById(R.id.go_places_recycler_view);
+
+        mAdapter2 = new RouteAdapter(routeList2);
+        mRecyclerView2.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView2.setAdapter(mAdapter2);
+
+        prepareRouteData2();
+
+
+        mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
+        mBottomNav.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        selectFragment(item);
+                        return true;
+                    }
+
+                });
+
+        MenuItem selectedItem;
+        if (savedInstanceState != null) {
+            mSelectedItem = savedInstanceState.getInt(SELECTED_ITEM, 0);
+            selectedItem = mBottomNav.getMenu().findItem(mSelectedItem);
+        } else {
+            selectedItem = mBottomNav.getMenu().getItem(0);
+        }
+        selectFragment(selectedItem);
 
     }
 
@@ -208,21 +233,83 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void selectFragment(MenuItem item) {
-        Fragment frag = MenuFragment.newInstance(item.getItemId());
-
+        int mSelectedItem = item.getItemId();
         // update selected item
-        mSelectedItem = item.getItemId();
-
         // uncheck the other items.
-        for (int i = 0; i< mBottomNav.getMenu().size(); i++) {
-            MenuItem menuItem = mBottomNav.getMenu().getItem(i);
-            menuItem.setChecked(menuItem.getItemId() == item.getItemId());
-        }
-
-        if (frag != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.container, frag, frag.getTag());
-            ft.commit();
+        if (mSelectedItem == R.id.navigation_go) {
+            mRecyclerView.setVisibility(View.INVISIBLE);
+            mRecyclerView2.setVisibility(View.VISIBLE);
+        } else if (mSelectedItem == R.id.navigation_routes) {
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mRecyclerView2.setVisibility(View.INVISIBLE);
         }
     }
+
+    private void prepareRouteData() {
+        Route route = new Route("Green-A", RouteState.ON_TIME);
+        routeList.add(route);
+
+        route = new Route("Green-B", RouteState.ON_TIME);
+        routeList.add(route);
+
+        route = new Route("Green-C", RouteState.DELAY);
+        routeList.add(route);
+
+        route = new Route("Green-C", RouteState.DELAY);
+        routeList.add(route);
+
+        route = new Route("Green-D", RouteState.DELAY);
+        routeList.add(route);
+
+        route = new Route("Green-F", RouteState.DELAY);
+        routeList.add(route);
+
+        route = new Route("Green-A2", RouteState.DELAY);
+        routeList.add(route);
+
+        route = new Route("Green-P", RouteState.DELAY);
+        routeList.add(route);
+
+        route = new Route("Green-S", RouteState.DELAY);
+        routeList.add(route);
+
+        route = new Route("Green-B2", RouteState.ON_TIME);
+        routeList.add(route);
+
+        route = new Route("Green-B3", RouteState.ON_TIME);
+        routeList.add(route);
+
+        route = new Route("Green-B4", RouteState.ON_TIME);
+        routeList.add(route);
+
+        route = new Route("Green-B", RouteState.ON_TIME);
+        routeList.add(route);
+
+        route = new Route("Green-B", RouteState.ON_TIME);
+        routeList.add(route);
+
+        route = new Route("Green-B", RouteState.ON_TIME);
+        routeList.add(route);
+
+        route = new Route("Green-B", RouteState.ON_TIME);
+        routeList.add(route);
+
+        route = new Route("Green-B", RouteState.ON_TIME);
+        routeList.add(route);
+
+        route = new Route("Green-B", RouteState.ON_TIME);
+        routeList.add(route);
+    }
+
+    private void prepareRouteData2() {
+        Route route = new Route("Green-A", RouteState.ON_TIME);
+        routeList2.add(route);
+
+        route = new Route("Green-B", RouteState.ON_TIME);
+        routeList2.add(route);
+
+        route = new Route("Green-C", RouteState.DELAY);
+        routeList2.add(route);
+    }
+
 }

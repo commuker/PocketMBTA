@@ -4,6 +4,7 @@ package com.commuker.pocketmbta.activity;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -21,8 +22,11 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.commuker.pocketmbta.R;
+import com.commuker.pocketmbta.datamodel.Place;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -36,6 +40,10 @@ import java.util.List;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
+
+    private static SharedPreferences sharedPrefs;
+    private static SharedPreferences.Editor editor;
+
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
@@ -83,6 +91,20 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.
                 preference.setSummary(stringValue);
+
+//                String prefKey = "your_places";
+//                Set<String> prefs = sharedPrefs.getStringSet(prefKey, new HashSet<String>());
+//                prefs.add(stringValue);
+//                editor.putStringSet(prefKey, prefs);
+//                editor.commit();
+//
+//                if(preference.getKey().equals("places_home")) {
+//                    sharedPrefs.getString
+//                    PlaceUtil.addPlace(new Place("Home", stringValue, 0.0f, 0.0f));
+//                } else if (preference.getKey().equals("places_work")) {
+//                    PlaceUtil.addPlace(new Place("Work", stringValue, 0.0f, 0.0f));
+//                }
+
             }
             return true;
         }
@@ -118,10 +140,24 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         .getString(preference.getKey(), ""));
     }
 
+    private static void bindPreferenceSummaryToValueSet(Preference preference) {
+        // Set the listener to watch for value changes.
+        preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
+
+        // Trigger the listener immediately with the preference's
+        // current value.
+        sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+                PreferenceManager
+                        .getDefaultSharedPreferences(preference.getContext())
+                        .getStringSet(preference.getKey(), new HashSet<String>()));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupActionBar();
+        sharedPrefs = getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPrefs.edit();
     }
 
     /**
@@ -181,7 +217,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("places_home"));
             bindPreferenceSummaryToValue(findPreference("places_work"));
-            //bindPreferenceSummaryToValue(findPreference("commute_method"));
+            bindPreferenceSummaryToValueSet(findPreference("commute_method"));
             bindPreferenceSummaryToValue(findPreference("example_list"));
         }
 

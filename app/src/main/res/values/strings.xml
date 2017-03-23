@@ -85,4 +85,8 @@
     <string name="title_activity_your_places">YourPlacesActivity</string>
     <string name="places_home">Home</string>
     <string name="places_work">Work</string>
+    <string name="pref_places_home">places_home</string>
+    <string name="pref_places_work">places_work</string>
+    <string name="pref_commute_method">commute_method</string>
+    <string name="pref_places">your_places</string>
 </resources>

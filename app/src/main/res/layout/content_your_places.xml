@@ -8,10 +8,10 @@
     tools:context="com.commuker.pocketmbta.activity.YourPlacesActivity"
     tools:showIn="@layout/activity_your_places">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/your_places_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </ListView>
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 
 </android.support.constraint.ConstraintLayout>
